@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "112024232890",
+    "project_id": "text-me-835c4",
+    "storage_bucket": "text-me-835c4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112024232890:android:7cc302fb618196503b7383",
+        "android_client_info": {
+          "package_name": "com.example.text_me"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkIIXZSli8lWjxisDqkVSnI8vLt0GP0To"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
