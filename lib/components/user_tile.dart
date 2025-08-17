@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class UserTile extends StatelessWidget {
   const UserTile({super.key, required this.text,required this.onTap});
@@ -15,6 +16,8 @@ final void Function()? onTap;
           color:Theme.of( context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(12),
         ),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+        padding: const EdgeInsets.all(20),
         child: Row(
           children: [
             //user icon
@@ -23,9 +26,10 @@ final void Function()? onTap;
               child: Icon(
                 Icons.person,
                 
+                
               ),
             ),
-
+            Gap(20),
             //user name
             Text(
               text,

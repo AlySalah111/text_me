@@ -21,11 +21,12 @@ final ChatServices chatServices = ChatServices();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home Page',
+        title: Text('Home' ,
             style: TextStyle(
               color: Theme.of(context).colorScheme.onPrimary,
             )),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
         elevation: 10,
        
       ),
@@ -64,17 +65,23 @@ return ListView(
   // build user list item
   Widget buildUserListItem(Map<String, dynamic>userData, BuildContext context){
  // display all users except the current user 
-return UserTile(
+if(userData['email']!= authServices.getCurrentUser()!.email){
+
+  return UserTile(
   text: userData['email'], 
   onTap: (){
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ChatPage(receiverEmail: userData['email'],),
+        builder: (context) => ChatPage(receiverEmail: userData['email'], receiverID: userData['uid'],),
       ),
     );
   }
   );
+}else{
+  return Container(); // return empty container for current user
+}
+
 
   }
 
