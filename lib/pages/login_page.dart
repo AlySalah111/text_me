@@ -49,83 +49,99 @@ void login(BuildContext context)async {
   Widget build(BuildContext context) {
    
     return Scaffold(
+      
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-             
-              //logo
-              children: [
-
-                Icon(Icons.message,
-                  size: 100,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                Gap(50),
-                //welcome back massage
-              Text('Welcome Back',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-                Gap(20),
-                
-               // pw text field
-              CustomTextfield(
-                hintText: 'Enter your email',
-                obscureText: false, 
-                controller: emailController,
-              ),
-              Gap(10),
-              CustomTextfield(
-                hintText: 'Enter password',
-                obscureText: true,
-                controller: passwordController,
-              ),
-              Gap(20),
-              //loginButton
-              CustomButton(
-                text: 'L O G I N',
-                onTap: () => login(context), // Call the login method
-              ),
+        body: 
           
-              Gap(20),
-          
-               //register
-               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Don\'t have an account?',
-                    style: TextStyle(
-                      
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegisterPage.routName);
-                    },
-                    child: Text('Register Now',
+             Padding(
+               padding: const EdgeInsets.only(top: 150 ),
+               child:  SingleChildScrollView(
+                 child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                   
+                    //logo
+                    children: [
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            
+                          ],
+                        ),
+                      ),
+                      Icon(Icons.message,
+                        size: 100,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      Gap(50),
+                      //welcome back massage
+                    Text('Welcome Back',
                       style: TextStyle(
-                        
-                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
-                  ),
-                ],
+                      Gap(20),
+                      
+                     // pw text field
+                    CustomTextfield(
+                      hintText: 'Enter your email',
+                      focusNode: FocusNode(),
+                      obscureText: false, 
+                      controller: emailController,
+                    ),
+                    Gap(10),
+                    CustomTextfield(
+                      focusNode: FocusNode(),
+                      hintText: 'Enter password',
+                      obscureText: true,
+                      controller: passwordController,
+                    ),
+                    Gap(20),
+                    //loginButton
+                    CustomButton(
+                      text: 'L O G I N',
+                      onTap: () => login(context), // Call the login method
+                    ),
+                             
+                    Gap(20),
+                             
+                     //register
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Don\'t have an account?',
+                          style: TextStyle(
+                            
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, RegisterPage.routName);
+                          },
+                          child: Text('Register Now',
+                            style: TextStyle(
+                              
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                     ),
+                    ],
+                               
+                    
+                    
+                               
+                               
+                               
+                               
+                               ),
                ),
-              ],
-            
-              
-              
-            
-            
-            
-            
-            ),
-          ),
-        ),
+                 
+               
+             ),
+          
+        
     );
   }
 }

@@ -63,87 +63,94 @@ showDialog(context:context,
 return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-             
-              //logo
-              children: [
-                Icon(Icons.message,
-                  size: 100,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                Gap(50),
-                //welcome back massage
-              Text('create new account',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-                Gap(20),
-                CustomTextfield(hintText: 'user name',
-                 obscureText: false, 
-                 controller: usernameController,
-                 ),
-                 Gap(10),
-               // pw text field
-              CustomTextfield(
-                hintText: 'Enter your email',
-                obscureText: false, 
-                controller: emailController,
-              ),
-              Gap(10),
-              CustomTextfield(
-                hintText: 'Enter password',
-                obscureText: true,
-                controller: passwordController,
-              ),
-              Gap(10),
-              CustomTextfield(
-                hintText: 'Confirm password',
-                obscureText: true,
-                controller: confirmPasswordController,
-              ),
-              Gap(20),
-              //loginButton
-              CustomButton(
-                text: 'Register',
-                onTap: () => register(context), // Call the register method
-              ),
-          
-              Gap(20),
-          
-               //register
-               Row(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+               
+                //logo
                 children: [
-                  Text('allready have an account?',
-                    style: TextStyle(
-                      
-                    ),
+                  Icon(Icons.message,
+                    size: 100,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Login Now',
+                  Gap(50),
+                  //welcome back massage
+                Text('create new account',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                  Gap(20),
+                  CustomTextfield(hintText: 'user name',
+                   obscureText: false, 
+                   controller: usernameController,
+                   focusNode: FocusNode(),
+                   ),
+                   Gap(10),
+                 // pw text field
+                CustomTextfield(
+                  hintText: 'Enter your email',
+                  obscureText: false, 
+                  controller: emailController,
+                  focusNode: FocusNode(),
+                ),
+                Gap(10),
+                CustomTextfield(
+                  hintText: 'Enter password',
+                  obscureText: true,
+                  controller: passwordController,
+                  focusNode: FocusNode(),
+                ),
+                Gap(10),
+                CustomTextfield(
+                  hintText: 'Confirm password',
+                  obscureText: true,
+                  controller: confirmPasswordController,
+                  focusNode: FocusNode(),
+                ),
+                Gap(20),
+                //loginButton
+                CustomButton(
+                  text: 'Register',
+                  onTap: () => register(context), // Call the register method
+                ),
+            
+                Gap(20),
+            
+                 //register
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('allready have an account?',
                       style: TextStyle(
                         
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Login Now',
+                        style: TextStyle(
+                          
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                 ),
                 ],
-               ),
-              ],
-            
+              
+                
+                
               
               
-            
-            
-            
-            
+              
+              
+              ),
             ),
           ),
         ),

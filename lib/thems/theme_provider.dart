@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:text_me/thems/dark_,ode.dart';
+import 'package:text_me/thems/dark_ode.dart';
 import 'package:text_me/thems/light_mode.dart';
 
 class ThemeProvider extends ChangeNotifier {

@@ -5,24 +5,62 @@ import 'package:text_me/components/chat_bubble.dart';
 import 'package:text_me/components/custom_textField.dart';
 import 'package:text_me/services/auth_services.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
    ChatPage({super.key, required this.receiverEmail,
    required this.receiverID
    
    });
 static final String routName = 'ChatPage';
 final String receiverEmail;
-final String receiverID ;// This should be replaced with actual receiver ID logic
+final String receiverID ;
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
 
+class _ChatPageState extends State<ChatPage> {
+// This should be replaced with actual receiver ID logic
 TextEditingController messageController = TextEditingController();
 
 final ChatServices chatSevices = ChatServices();
+
 final AuthServices authServices = AuthServices();
+
+
+FocusNode focusNode = FocusNode();
+
+void initState() {
+  super.initState();
+  focusNode.addListener(() {
+    if (focusNode.hasFocus) {
+      Future.delayed(Duration(microseconds: 500),
+      ()=>scrollDown(),
+      );
+    }
+  });
+  Future.delayed(Duration(milliseconds: 500),
+  () => scrollDown(),
+  
+  );
+}
+void dispose() {
+  messageController.dispose();
+  focusNode.dispose();
+  super.dispose();
+}
+
+final ScrollController scrollController = ScrollController();
+void scrollDown(){
+scrollController.animateTo(
+  scrollController.position.maxScrollExtent,
+  duration: Duration(seconds: 1),
+  curve: Curves.easeInOut,
+);
+}
 
 //send message 
 void sendMessage()async{
 if(messageController.text.isNotEmpty){
-  await chatSevices.sendMessage(receiverID, messageController.text);
+  await chatSevices.sendMessage(widget.receiverID, messageController.text);
   messageController.clear();
 
 
@@ -30,11 +68,12 @@ if(messageController.text.isNotEmpty){
 
 
 }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(receiverEmail),
+        title: Text(widget.receiverEmail),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
       ),
@@ -50,12 +89,11 @@ if(messageController.text.isNotEmpty){
     );
   }
 
-
   Widget buildMessageList(){
 
 String senderId = authServices.getCurrentUser() !.uid;
 return StreamBuilder(
-  stream: chatSevices.getMessages(senderId, receiverID),
+  stream: chatSevices.getMessages(senderId, widget.receiverID),
   builder: (context, snapshot) {
     //error
     if(snapshot.hasError){
@@ -69,6 +107,7 @@ return StreamBuilder(
     }
     // return list of messages
     return ListView(
+      controller: scrollController,
       children: [
         ...snapshot.data!.docs.map((doc) => buildMessageItem(doc)).toList(),
       ],
@@ -116,6 +155,7 @@ return Padding(
          Expanded(
            child: CustomTextfield(
             controller: messageController,
+            focusNode: focusNode,
             hintText: 'Type a message',
             obscureText: false,
                  ),
@@ -138,5 +178,4 @@ return Padding(
 );
 
 }
-  
 }
